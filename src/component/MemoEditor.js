@@ -15,7 +15,6 @@ const MemoEditor = ({ onCreate }) => {
       ...info,
       [e.target.name]: e.target.value,
     });
-    console.log(info);
   };
 
   const handleSubmit = (e) => {

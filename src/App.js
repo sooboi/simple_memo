@@ -21,11 +21,16 @@ function App() {
     setData([newItem, ...data]);
   };
 
+  const onDelete = (targetId) => {
+    const newMemoList = data.filter((it) => it.id !== targetId);
+    setData(newMemoList);
+  };
+
   return (
     <div className="App">
       <div className="Box">
         <MemoEditor onCreate={onCreate} />
-        <MemoList memoList={data} />
+        <MemoList memoList={data} onDelete={onDelete} />
       </div>
     </div>
   );

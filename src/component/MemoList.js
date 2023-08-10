@@ -1,14 +1,13 @@
 import MemoItem from "./MemoItem";
 
-const MemoList = ({ memoList }) => {
-  console.log(memoList);
+const MemoList = ({ memoList, onDelete }) => {
   return (
     <div className="MemoList">
       <h2>List</h2>
       <h4>{memoList.length} memo exists</h4>
       <div>
         {memoList.map((it) => (
-          <MemoItem key={it.id} {...it} />
+          <MemoItem key={it.id} {...it} onDelete={onDelete} />
         ))}
       </div>
     </div>
