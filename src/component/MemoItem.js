@@ -1,4 +1,4 @@
-const MemoItem = ({ title, content, importance, id, create_date }) => {
+const MemoItem = ({ title, content, importance, created_date }) => {
   const importanceChanger = (i) => {
     if (i == 3) {
       return "⚡️⚡️⚡️";
@@ -16,7 +16,7 @@ const MemoItem = ({ title, content, importance, id, create_date }) => {
           {title} {importanceChanger(importance)}
         </div>
         <p />
-        <div className="date">{new Date(create_date).toLocaleString()}</div>
+        <div className="date">{new Date(created_date).toLocaleString()}</div>
         <div className="content">{content}</div>
       </div>
     </div>

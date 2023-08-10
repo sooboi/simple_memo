@@ -1,37 +1,31 @@
-import "./App.css";
-import MemoEditor from "./MemoEditor";
-import MemoList from "./MemoList";
-
-const dummyList = [
-  {
-    id: 1,
-    title: "eat meal",
-    content: "please eat some please",
-    importance: "2",
-    create_date: new Date().getTime(),
-  },
-  {
-    id: 2,
-    title: "health",
-    content: "please use ur body",
-    importance: "1",
-    create_date: new Date().getTime(),
-  },
-  {
-    id: 3,
-    title: "studying",
-    content: "don't give up",
-    importance: "3",
-    create_date: new Date().getTime(),
-  },
-];
+import "./style/App.css";
+import MemoEditor from "./component/MemoEditor";
+import MemoList from "./component/MemoList";
+import { useRef, useState } from "react";
 
 function App() {
+  const [data, setData] = useState([]);
+
+  const dateId = useRef(0);
+
+  const onCreate = (title, content, importance) => {
+    const created_date = new Date().getTime();
+    const newItem = {
+      title,
+      content,
+      importance,
+      created_date,
+      id: dateId.current,
+    };
+    dateId.current += 1;
+    setData([newItem, ...data]);
+  };
+
   return (
     <div className="App">
-      <div className="Box-wrapper">
-        <MemoEditor />
-        <MemoList memoList={dummyList} />
+      <div className="Box">
+        <MemoEditor onCreate={onCreate} />
+        <MemoList memoList={data} />
       </div>
     </div>
   );

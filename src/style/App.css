@@ -12,22 +12,34 @@
   font-family: "intelone-mono-font-family-regular";
 }
 
-.Box-wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 70px;
-}
-
 /* Editor */
 
+.Box {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://images.unsplash.com/photo-1588421357574-87938a86fa28?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .MemoEditor {
+  margin-top: 20px;
+  margin-right: 100px;
+  width: 60vh;
   text-align: center;
   padding: 30px 20px;
-  background-color: #ffdd1c;
+  background-color: #f9e46f;
   box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
+  transition: all 0.5s;
+}
+
+.MemoEditor:hover {
+  background-color: #ffdd1c;
+  width: 62vh;
+  transition: all 0.5s;
 }
 
 .MemoEditor H2 {
@@ -69,11 +81,26 @@ textarea {
 /* List */
 
 .MemoList {
+  overflow: scroll;
+  width: 55vh;
+  height: 800px;
   padding: 20px;
   margin-top: 20px;
+  margin-bottom: 20px;
   box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   background-color: #f9e46f;
+  transition: all 0.5s;
+}
+
+.MemoList:hover {
+  background-color: #ffdd1c;
+  width: 60vh;
+  transition: all 0.5s;
+}
+
+.MemoList::-webkit-scrollbar {
+  display: none;
 }
 
 .MemoList h2 {

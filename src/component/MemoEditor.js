@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-const MemoEditor = () => {
+const MemoEditor = ({ onCreate }) => {
   const [info, setInfo] = useState({
     title: "",
     content: "",
@@ -28,13 +28,18 @@ const MemoEditor = () => {
       contentInput.current.focus();
       return;
     }
-
-    alert("Memo Success !");
+    onCreate(info.title, info.content, info.importance);
+    // alert("Memo Success !");
+    setInfo({
+      title: "",
+      content: "",
+      importance: 2,
+    });
   };
 
   return (
     <div className="MemoEditor">
-      <h2>Simple Memo</h2>
+      <h2>😗 Simple Memo</h2>
       <div>
         <input
           ref={titleInput}

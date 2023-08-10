@@ -4,7 +4,7 @@ const MemoList = ({ memoList }) => {
   console.log(memoList);
   return (
     <div className="MemoList">
-      <h2>Memo List</h2>
+      <h2>List</h2>
       <h4>{memoList.length} memo exists</h4>
       <div>
         {memoList.map((it) => (
