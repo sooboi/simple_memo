@@ -1,0 +1,64 @@
+@font-face {
+  font-family: "60sSTRIPE";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/60sSTRIPE.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.Box-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.MemoEditor {
+  font-family: "60sSTRIPE";
+  text-align: center;
+  padding: 30px 20px;
+  background-color: #f9e46f;
+  box-shadow: 10px 10px 20px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+}
+
+.MemoEditor H2 {
+  margin-bottom: 20px;
+}
+
+.MemoEditor input,
+textarea {
+  margin-bottom: 20px;
+  width: 500px;
+  padding: 10px;
+}
+
+.MemoEditor textarea {
+  height: 150px;
+}
+
+.MemoEditor select {
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.MemoEditor button {
+  width: 300px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: white;
+  transition: all 0.3s;
+}
+
+.MemoEditor button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  transition: all 0.3s;
+}
