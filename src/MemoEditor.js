@@ -51,7 +51,7 @@ const MemoEditor = () => {
           name="content"
           value={info.content}
           onChange={handleChangeInfo}
-          placeholder="conetent . . ."
+          placeholder="content . . ."
         ></textarea>
       </div>
       <div>
@@ -62,9 +62,9 @@ const MemoEditor = () => {
           value={info.importance}
           onChange={handleChangeInfo}
         >
-          <option value={1}>Low</option>
-          <option value={2}>Normal</option>
-          <option value={3}>High</option>
+          <option value={1}>Low ⚡️</option>
+          <option value={2}>Normal ⚡️⚡️</option>
+          <option value={3}>High ⚡️⚡️⚡️</option>
         </select>
       </div>
       <div>
