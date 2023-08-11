@@ -1,14 +1,20 @@
 import { useState, useRef } from "react";
 
 const MemoEditor = ({ onCreate }) => {
+  /* Memo Info State */
+
   const [info, setInfo] = useState({
     title: "",
     content: "",
     importance: "2",
   });
 
+  /* Memo Input Focus */
+
   const titleInput = useRef();
   const contentInput = useRef();
+
+  /* Memo Input Info Change */
 
   const handleChangeInfo = (e) => {
     setInfo({
@@ -16,6 +22,8 @@ const MemoEditor = ({ onCreate }) => {
       [e.target.name]: e.target.value,
     });
   };
+
+  /* Memo Input Submit */
 
   const handleSubmit = (e) => {
     if (info.title < 1) {
@@ -28,7 +36,6 @@ const MemoEditor = ({ onCreate }) => {
       return;
     }
     onCreate(info.title, info.content, info.importance);
-    // alert("Memo Success !");
     setInfo({
       title: "",
       content: "",
