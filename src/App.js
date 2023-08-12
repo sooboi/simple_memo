@@ -56,6 +56,8 @@ function App() {
 
   const handleAnToggle = () => setIsAnToggle(!isAnToggle);
 
+  console.log("git add 용 * 추후 삭제");
+
   return (
     <div className="App">
       <div className="Box">
