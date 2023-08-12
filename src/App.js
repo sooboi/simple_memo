@@ -45,7 +45,8 @@ function App() {
     console.log("Memo Analysis start");
     const highCount = data.filter((it) => it.importance >= 3).length;
     const restCount = data.length - highCount;
-    const highRatio = (highCount / data.length) * 100;
+    const ratio = (highCount / data.length) * 100;
+    const highRatio = ratio.toFixed(3);
     return { highCount, restCount, highRatio };
   }, [data.length]);
 
@@ -68,7 +69,7 @@ function App() {
               <div>All Memo : {data.length}</div>
               <div>High Importance : {highCount}</div>
               <div>Rest Importance : {restCount}</div>
-              <div>High Memo Ratio : {highRatio}</div>
+              <div>High Memo Ratio : {highRatio}%</div>
             </div>
           </>
         ) : (

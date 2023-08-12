@@ -33,10 +33,9 @@
 
 .MemoStatus {
   position: fixed;
-  top: 0;
-  width: 500px;
+  top: 10px;
   padding: 20px;
-  text-align: center;
+  text-align: start;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
 }
