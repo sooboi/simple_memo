@@ -1,7 +1,7 @@
 import "./style/App.css";
 import MemoEditor from "./component/MemoEditor";
 import MemoList from "./component/MemoList";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 function App() {
   /* Data State */
@@ -41,10 +41,40 @@ function App() {
     );
   };
 
+  const getMemoAnalysis = useMemo(() => {
+    console.log("Memo Analysis start");
+    const highCount = data.filter((it) => it.importance >= 3).length;
+    const restCount = data.length - highCount;
+    const highRatio = (highCount / data.length) * 100;
+    return { highCount, restCount, highRatio };
+  }, [data.length]);
+
+  const { highCount, restCount, highRatio } = getMemoAnalysis;
+
+  const [isAnToggle, setIsAnToggle] = useState(false);
+
+  const handleAnToggle = () => setIsAnToggle(!isAnToggle);
+
   return (
     <div className="App">
       <div className="Box">
         <MemoEditor onCreate={onCreate} />
+        <button className="AnBtn" onClick={handleAnToggle}>
+          Analysis
+        </button>
+        {isAnToggle ? (
+          <>
+            <div className="MemoStatus">
+              <div>All Memo : {data.length}</div>
+              <div>High Importance : {highCount}</div>
+              <div>Rest Importance : {restCount}</div>
+              <div>High Memo Ratio : {highRatio}</div>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+
         <MemoList memoList={data} onRemove={onRemove} onEdit={onEdit} />
       </div>
     </div>

@@ -24,6 +24,23 @@
   background-size: cover;
 }
 
+.AnBtn {
+  position: fixed;
+  top: 0px;
+  right: 0;
+  cursor: pointer;
+}
+
+.MemoStatus {
+  position: fixed;
+  top: 0;
+  width: 500px;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
 .MemoEditor {
   margin-top: 20px;
   margin-right: 100px;
