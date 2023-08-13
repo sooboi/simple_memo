@@ -42,7 +42,6 @@ function App() {
   };
 
   const getMemoAnalysis = useMemo(() => {
-    console.log("Memo Analysis start");
     const highCount = data.filter((it) => it.importance >= 3).length;
     const restCount = data.length - highCount;
     const ratio = (highCount / data.length) * 100;
