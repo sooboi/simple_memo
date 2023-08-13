@@ -2,6 +2,7 @@ import "./style/App.css";
 import MemoEditor from "./component/MemoEditor";
 import MemoList from "./component/MemoList";
 import { useMemo, useRef, useState } from "react";
+import OptimizeTest from "./OptimizeTest";
 
 function App() {
   /* Data State */
@@ -55,10 +56,9 @@ function App() {
 
   const handleAnToggle = () => setIsAnToggle(!isAnToggle);
 
-  console.log("git add 용 * 추후 삭제");
-
   return (
     <div className="App">
+      <OptimizeTest />
       <div className="Box">
         <MemoEditor onCreate={onCreate} />
         <button className="AnBtn" onClick={handleAnToggle}>
