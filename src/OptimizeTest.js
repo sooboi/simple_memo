@@ -7,12 +7,24 @@ const CountA = React.memo(({ count }) => {
   return <div>{count}</div>;
 });
 
-const CountB = React.memo(({ obj }) => {
+const CountB = ({ obj }) => {
   useEffect(() => {
     console.log(`CountB update - ${obj.count}`);
   });
   return <div>{obj.count}</div>;
-});
+};
+
+const areEqual = (prevProps, nextProps) => {
+  //  return true;  // 이전 props 와 현재 props 가 같다 => 리렌더링 X
+  //  return false; // 이전과 현재가 다르다 => 리렌더링 O
+  //   if (prevProps.obj.count === nextProps.obj.count) {
+  //     return true;
+  //   }
+  //   return false;
+  return prevProps.obj.count === nextProps.obj.count;
+};
+
+const MemoizedCountB = React.memo(CountB, areEqual);
 
 const OptimizeTest = () => {
   const [count, setCount] = useState(1);
@@ -29,7 +41,7 @@ const OptimizeTest = () => {
       </div>
       <div>
         <h2>Counter B</h2>
-        <CountB obj={obj} />
+        <MemoizedCountB obj={obj} />
         <button onClick={() => setObj({ count: obj.count })}>B Button</button>
       </div>
     </div>
