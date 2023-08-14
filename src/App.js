@@ -1,29 +1,28 @@
 import "./style/App.css";
 import MemoEditor from "./component/MemoEditor";
 import MemoList from "./component/MemoList";
-import { useMemo, useRef, useState } from "react";
-import OptimizeTest from "./OptimizeTest";
+import { useCallback, useMemo, useRef, useState } from "react";
 
 function App() {
   /* Data State */
 
   const [data, setData] = useState([]);
-  const dateId = useRef(0);
+  const dataId = useRef(0);
 
   /* Create */
 
-  const onCreate = (title, content, importance) => {
+  const onCreate = useCallback((title, content, importance) => {
     const created_date = new Date().getTime();
     const newItem = {
       title,
       content,
       importance,
       created_date,
-      id: dateId.current,
+      id: dataId.current,
     };
-    dateId.current += 1;
-    setData([newItem, ...data]);
-  };
+    dataId.current += 1;
+    setData((data) => [newItem, ...data]);
+  }, []);
 
   /* Remove */
 
@@ -42,23 +41,22 @@ function App() {
     );
   };
 
+  /* Analysis */
+
   const getMemoAnalysis = useMemo(() => {
     const highCount = data.filter((it) => it.importance >= 3).length;
     const restCount = data.length - highCount;
     const ratio = (highCount / data.length) * 100;
-    const highRatio = ratio.toFixed(3);
+    const highRatio = ratio.toFixed(2);
     return { highCount, restCount, highRatio };
   }, [data.length]);
 
   const { highCount, restCount, highRatio } = getMemoAnalysis;
-
   const [isAnToggle, setIsAnToggle] = useState(false);
-
   const handleAnToggle = () => setIsAnToggle(!isAnToggle);
 
   return (
     <div className="App">
-      <OptimizeTest />
       <div className="Box">
         <MemoEditor onCreate={onCreate} />
         <button className="AnBtn" onClick={handleAnToggle}>

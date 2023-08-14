@@ -12,7 +12,7 @@ const MemoItem = ({
   /* Importance Change */
 
   const importanceChanger = (i) => {
-    if (i === 3) {
+    if (i >= 3) {
       return "⚡️⚡️⚡️";
     } else if (i === 2) {
       return "⚡️⚡️";

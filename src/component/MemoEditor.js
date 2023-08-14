@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const MemoEditor = ({ onCreate }) => {
   /* Memo Info State */
@@ -85,4 +85,4 @@ const MemoEditor = ({ onCreate }) => {
   );
 };
 
-export default MemoEditor;
+export default React.memo(MemoEditor);
