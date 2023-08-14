@@ -26,20 +26,21 @@ function App() {
 
   /* Remove */
 
-  const onRemove = (targetId) => {
-    const newMemoList = data.filter((it) => it.id !== targetId);
-    setData(newMemoList);
-  };
+  const onRemove = useCallback((targetId) => {
+    setData((data) => data.filter((it) => it.id !== targetId));
+    // const newMemoList = data.filter((it) => it.id !== targetId);
+    // setData(newMemoList);
+  }, []);
 
   /* Edit */
 
-  const onEdit = (targetId, newContent) => {
-    setData(
+  const onEdit = useCallback((targetId, newContent) => {
+    setData((data) =>
       data.map((it) =>
         it.id === targetId ? { ...it, content: newContent } : it
       )
     );
-  };
+  }, []);
 
   /* Analysis */
 

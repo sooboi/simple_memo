@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const MemoItem = ({
   onRemove,
@@ -10,6 +10,10 @@ const MemoItem = ({
   created_date,
 }) => {
   /* Importance Change */
+
+  useEffect(() => {
+    console.log(`${id}번째 아이템 렌더`);
+  });
 
   const importanceChanger = (i) => {
     if (i >= 3) {
@@ -102,4 +106,4 @@ const MemoItem = ({
   );
 };
 
-export default MemoItem;
+export default React.memo(MemoItem);
