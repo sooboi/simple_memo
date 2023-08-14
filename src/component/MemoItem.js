@@ -11,10 +11,6 @@ const MemoItem = ({
 }) => {
   /* Importance Change */
 
-  useEffect(() => {
-    console.log(`${id}번째 아이템 렌더`);
-  });
-
   const importanceChanger = (i) => {
     if (i >= 3) {
       return "⚡️⚡️⚡️";

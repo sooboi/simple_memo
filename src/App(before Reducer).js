@@ -1,58 +1,45 @@
 import "./style/App.css";
 import MemoEditor from "./component/MemoEditor";
 import MemoList from "./component/MemoList";
-import { useCallback, useMemo, useReducer, useState, useRef } from "react";
-import { act } from "react-dom/test-utils";
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "CREATE": {
-      const created_date = new Date().getTime();
-      const newItem = {
-        ...action.data,
-        created_date,
-      };
-      return [newItem, ...state];
-    }
-    case "REMOVE": {
-      return state.filter((it) => it.id !== action.targetId);
-    }
-    case "EDIT": {
-      return state.map((it) =>
-        it.id === action.targetId ? { ...it, content: action.newContent } : it
-      );
-    }
-    default:
-      return state;
-  }
-};
+import { useCallback, useMemo, useRef, useState } from "react";
 
 function App() {
   /* Data State */
 
-  const [data, dispatch] = useReducer(reducer, []);
+  const [data, setData] = useState([]);
   const dataId = useRef(0);
 
   /* Create */
 
   const onCreate = useCallback((title, content, importance) => {
-    dispatch({
-      type: "CREATE",
-      data: { title, content, importance, id: dataId.current },
-    });
+    const created_date = new Date().getTime();
+    const newItem = {
+      title,
+      content,
+      importance,
+      created_date,
+      id: dataId.current,
+    };
     dataId.current += 1;
+    setData((data) => [newItem, ...data]);
   }, []);
 
   /* Remove */
 
   const onRemove = useCallback((targetId) => {
-    dispatch({ type: "REMOVE", targetId });
+    setData((data) => data.filter((it) => it.id !== targetId));
+    // const newMemoList = data.filter((it) => it.id !== targetId);
+    // setData(newMemoList);
   }, []);
 
   /* Edit */
 
   const onEdit = useCallback((targetId, newContent) => {
-    dispatch({ type: "EDIT", targetId, newContent });
+    setData((data) =>
+      data.map((it) =>
+        it.id === targetId ? { ...it, content: newContent } : it
+      )
+    );
   }, []);
 
   /* Analysis */
