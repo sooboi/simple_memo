@@ -1,14 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { MemoDispatchContext } from "../App";
 
-const MemoItem = ({
-  onRemove,
-  onEdit,
-  title,
-  content,
-  importance,
-  id,
-  created_date,
-}) => {
+const MemoItem = ({ title, content, importance, id, created_date }) => {
+  const { onRemove, onEdit } = useContext(MemoDispatchContext);
+
   /* Importance Change */
 
   const importanceChanger = (i) => {

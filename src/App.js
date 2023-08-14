@@ -1,8 +1,13 @@
 import "./style/App.css";
 import MemoEditor from "./component/MemoEditor";
 import MemoList from "./component/MemoList";
-import { useCallback, useMemo, useReducer, useState, useRef } from "react";
-import { act } from "react-dom/test-utils";
+import React, {
+  useCallback,
+  useMemo,
+  useReducer,
+  useState,
+  useRef,
+} from "react";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -26,6 +31,9 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
+export const MemoStateContext = React.createContext();
+export const MemoDispatchContext = React.createContext();
 
 function App() {
   /* Data State */
@@ -55,6 +63,10 @@ function App() {
     dispatch({ type: "EDIT", targetId, newContent });
   }, []);
 
+  const memoizedDispatches = useMemo(() => {
+    return { onCreate, onRemove, onEdit };
+  }, []);
+
   /* Analysis */
 
   const getMemoAnalysis = useMemo(() => {
@@ -70,28 +82,32 @@ function App() {
   const handleAnToggle = () => setIsAnToggle(!isAnToggle);
 
   return (
-    <div className="App">
-      <div className="Box">
-        <MemoEditor onCreate={onCreate} />
-        <button className="AnBtn" onClick={handleAnToggle}>
-          Analysis
-        </button>
-        {isAnToggle ? (
-          <>
-            <div className="MemoStatus">
-              <div>All Memo : {data.length}</div>
-              <div>High Importance : {highCount}</div>
-              <div>Rest Importance : {restCount}</div>
-              <div>High Memo Ratio : {highRatio}%</div>
-            </div>
-          </>
-        ) : (
-          <></>
-        )}
+    <MemoStateContext.Provider value={data}>
+      <MemoDispatchContext.Provider value={memoizedDispatches}>
+        <div className="App">
+          <div className="Box">
+            <MemoEditor />
+            <button className="AnBtn" onClick={handleAnToggle}>
+              Analysis
+            </button>
+            {isAnToggle ? (
+              <>
+                <div className="MemoStatus">
+                  <div>All Memo : {data.length}</div>
+                  <div>High Importance : {highCount}</div>
+                  <div>Rest Importance : {restCount}</div>
+                  <div>High Memo Ratio : {highRatio}%</div>
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
 
-        <MemoList memoList={data} onRemove={onRemove} onEdit={onEdit} />
-      </div>
-    </div>
+            <MemoList />
+          </div>
+        </div>
+      </MemoDispatchContext.Provider>
+    </MemoStateContext.Provider>
   );
 }
 

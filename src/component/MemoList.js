@@ -1,13 +1,17 @@
+import { useContext } from "react";
 import MemoItem from "./MemoItem";
+import { MemoStateContext } from "../App";
 
-const MemoList = ({ memoList, onRemove, onEdit }) => {
+const MemoList = () => {
+  const memoList = useContext(MemoStateContext);
+
   return (
     <div className="MemoList">
       <h2>List</h2>
       <h4>{memoList.length} memo exists</h4>
       <div>
         {memoList.map((it) => (
-          <MemoItem key={it.id} {...it} onRemove={onRemove} onEdit={onEdit} />
+          <MemoItem key={it.id} {...it} />
         ))}
       </div>
     </div>

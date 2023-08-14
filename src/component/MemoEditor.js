@@ -1,7 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { MemoDispatchContext } from "../App";
 
-const MemoEditor = ({ onCreate }) => {
+const MemoEditor = () => {
   /* Memo Info State */
+
+  const { onCreate } = useContext(MemoDispatchContext);
 
   const [info, setInfo] = useState({
     title: "",
